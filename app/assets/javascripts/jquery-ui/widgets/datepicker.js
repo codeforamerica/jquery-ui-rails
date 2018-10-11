@@ -886,7 +886,7 @@ $.extend( Datepicker.prototype, {
 
 		offset.left -= ( this._get( inst, "isRTL" ) ? ( dpWidth - inputWidth ) : 0 );
 		offset.left -= ( isFixed && offset.left === inst.input.offset().left ) ? $( document ).scrollLeft() : 0;
-		offset.top -= ( isFixed && offset.top === ( inst.input.offset().top + inputHeight ) ) ? $( document ).scrollTop() : 0;
+		offset.top -= ( isFixed && Math.abs(Math.round(offset.top) - Math.round(inst.input.offset().top + inputHeight)) <= 1 ) ? $( document ).scrollTop() : 0;
 
 		// Now check if datepicker is showing outside window viewport - move to a better place if so.
 		offset.left -= Math.min( offset.left, ( offset.left + dpWidth > viewWidth && viewWidth > dpWidth ) ?
